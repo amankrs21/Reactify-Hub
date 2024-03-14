@@ -9,12 +9,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div style={{ marginTop: 70 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/password" element={<PasswordVal />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/password" element={<PasswordVal />} />
+      </Routes>
     </BrowserRouter>
   );
 }
