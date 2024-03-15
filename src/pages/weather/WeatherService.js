@@ -3,7 +3,7 @@ const KEY = '00f400d0546c66bc9091f6f14060c2bd';
 
 export const fetchWeather = async (city) => {
     try {
-        const url = `${process.env.REACT_APP_API_BASE_URL}?q=${city}&units=imperial&type=accurate&appid=${process.env.REACT_APP_API_KEY}`;
+        const url = `${process.env.REACT_APP_API_BASE_URL}?q=${city}&type=accurate&appid=${process.env.REACT_APP_API_KEY}`;
         const response = await fetch(url);
         return response.json();
     } catch (error) {

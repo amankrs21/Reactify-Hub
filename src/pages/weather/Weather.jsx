@@ -35,8 +35,8 @@ export default function WeatherApp() {
             .join(' ');
     }
 
-    function fahrenheitToCelsius(fahrenheit) {
-        return ((fahrenheit - 32) * 5 / 9).toFixed(2);
+    function fahrenheitToCelsius(kelvin) {
+        return (kelvin - 273.15).toFixed(2);
     }
 
     return (
@@ -69,13 +69,13 @@ export default function WeatherApp() {
                                 </div>
                                 <div className="weather-temp">
                                     <DeviceThermostatIcon color='primary' />
-                                    <Typography variant="subtitle1">Feels Like: {weather.main.feels_like}°C</Typography>
+                                    <Typography variant="subtitle1">Feels Like: {fahrenheitToCelsius(weather.main.feels_like)}°C</Typography>
                                 </div>
                                 <div className="weather-temp">
                                     <ArrowDownwardIcon color='primary' />
-                                    <Typography variant="subtitle1">{weather.main.temp_min}°C</Typography>
+                                    <Typography variant="subtitle1">{fahrenheitToCelsius(weather.main.temp_min)}°C</Typography>
                                     <ArrowUpwardIcon color='primary' />
-                                    <Typography variant="subtitle1">{weather.main.temp_max}°C</Typography>
+                                    <Typography variant="subtitle1">{fahrenheitToCelsius(weather.main.temp_max)}°C</Typography>
                                 </div>
                                 <div className="weather-temp">
                                     <WaterDropIcon color='primary' />
