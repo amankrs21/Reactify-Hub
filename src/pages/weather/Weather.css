@@ -14,3 +14,30 @@
     justify-content: center;
     background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
 }
+
+.weather-result {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+
+}
+
+.weather-icons {
+    display: flex;
+    align-items: center;
+}
+
+.weather-icons img {
+    width: 120px;
+    height: 120px;
+}
+
+.weather-temp {
+    display: flex;
+    align-items: center;
+}
