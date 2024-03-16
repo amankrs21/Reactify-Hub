@@ -39,6 +39,11 @@ export default function WeatherApp() {
         return (kelvin - 273.15).toFixed(2);
     }
 
+    function convertSpeed(speed) {
+        // 1 m/s = 3.6 km/h
+        return (speed * 3.6).toFixed(2);
+    }
+
     return (
         <div className='weather-main'>
             <Container maxWidth="sm">
@@ -83,7 +88,7 @@ export default function WeatherApp() {
                                 </div>
                                 <div className="weather-temp">
                                     <WindPowerIcon color='primary' />
-                                    <Typography variant="subtitle1">Wind Speed: {weather.wind.speed} m/s</Typography>
+                                    <Typography variant="subtitle1">Wind Speed: {convertSpeed(weather.wind.speed)} km/h</Typography>
                                 </div>
                                 <div className="weather-temp">
                                     <ElectricMeterIcon color='primary' />
