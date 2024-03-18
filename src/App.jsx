@@ -6,6 +6,7 @@ import PasswordVal from './pages/password/PasswordVal';
 import Navbar from './pages/navbar/Navbar';
 import Weather from './pages/weather/Weather';
 import Bmi from './pages/bmi/Bmi';
+import Calculator from './pages/calculator/Calculator';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/password" element={<PasswordVal />} />
         <Route path='/weather' element={<Weather />} />
         <Route path='/bmi' element={<Bmi />} />
+        <Route path='/calculator' element={<Calculator />} />
       </Routes>
     </BrowserRouter>
   );
