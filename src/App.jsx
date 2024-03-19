@@ -7,6 +7,7 @@ import Navbar from './pages/navbar/Navbar';
 import Weather from './pages/weather/Weather';
 import Bmi from './pages/bmi/Bmi';
 import Calculator from './pages/calculator/Calculator';
+import Todo from './pages/todo/Todo';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path='/weather' element={<Weather />} />
         <Route path='/bmi' element={<Bmi />} />
         <Route path='/calculator' element={<Calculator />} />
+        <Route path='/todo' element={<Todo />} />
       </Routes>
     </BrowserRouter>
   );
