@@ -46,14 +46,16 @@ export default function Todo() {
     return (
         <div className='todo-main'>
             <Card className='todo-card'>
-                <Typography variant='h4' align='center'>NOTES</Typography>
+                <Typography variant='h4' align='center' color='primary'>NOTE'S</Typography>
                 <Divider />
                 <div className='todo-list'>
                     {/* Ensure you return the JSX from the map function */}
                     {notes.map((note, index) => (
                         <div className="todo-item" key={index}>
                             <Typography variant='h6'>{note}</Typography>
-                            <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} />
+                            <Tooltip title='Delete note' placement='top'>
+                                <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} />
+                            </Tooltip>
                         </div>
                     ))}
                 </div>
