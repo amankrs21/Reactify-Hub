@@ -48,7 +48,7 @@ export default function Home() {
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} md={4} onClick={() => navigate('/am-cal')}>
+                    <Grid item xs={12} md={4} onClick={() => navigate('/calculator')}>
                         <Card className='home-card'>
                             <Typography variant="h6" align="center" gutterBottom>Arithmetic Calculator</Typography>
                             <Typography variant="body2" align="center" paragraph>
@@ -66,7 +66,6 @@ export default function Home() {
                     </Grid>
                 </Grid>
                 <Typography variant="body2" align="center" paragraph mt={3}>
-                    <Divider />
                     Powered by React and enhanced with Material UI, our applications provide a seamless and intuitive user experience. React's component-based architecture and virtual DOM make it easy to create dynamic and responsive interfaces, while Material UI's pre-built components ensure a polished and modern look.
                 </Typography>
             </Container>

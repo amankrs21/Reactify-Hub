@@ -10,7 +10,6 @@ const pages = ['Home', 'Password', 'Weather', 'Calculator', 'BMI', 'Todo'];
 
 export default function Navbar() {
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpen = (page) => {
@@ -27,7 +26,7 @@ export default function Navbar() {
         } else {
             navigate('/');
         }
-        setOpen(false);
+        setAnchorElNav(null);
     }
 
     const handleOpenNavMenu = (event) => {
