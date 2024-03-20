@@ -1,38 +1,3 @@
-// import './Todo.css';
-// import { useState } from 'react';
-// import { Card, Divider, Grid, Tooltip, Typography } from '@mui/material';
-// import AddIcon from '@mui/icons-material/Add';
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-// export default function Todo() {
-//     const [notes, setNotes] = useState([]);
-//     setNotes(['Note 1', 'Note 2', 'Note 3']);
-//     return (
-//         <div className='todo-main'>
-//             <Card className='todo-card'>
-//                 <Typography variant='h4' align='center'>NOTES</Typography>
-//                 <Divider />
-//                 <div className='todo-list'>
-//                     {notes && notes.map((note, index) => {
-//                         <div className="todo-item" key={index}>
-//                             <Typography variant='h6'>{note}</Typography>
-//                             <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} />
-//                         </div>
-//                     })}
-//                 </div>
-//                 <div className='todo-add'>
-//                     <Grid item xs={5} sm md>
-//                         <Tooltip title='Add a new note' placement='top'>
-//                             <AddIcon className='todo-icon' />
-//                         </Tooltip>
-//                     </Grid>
-//                 </div>
-//             </Card>
-//         </div>
-//     )
-// }
-
-
 import './Todo.css';
 import { useState } from 'react';
 import { Card, Divider, Grid, Tooltip, Typography } from '@mui/material';
@@ -40,14 +5,28 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function Todo() {
-    // Initialize the notes state with default values.
-    const [notes, setNotes] = useState([
-        'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.',
-        'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.',
-        'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.',
-        'Note 2',
-        'Note 3'
+    const [todos, setNotes] = useState([
+        {
+            id: 1,
+            note: 'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.'
+        },
+        {
+            id: 2,
+            note: 'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.'
+        },
+        {
+            id: 3,
+            note: 'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.'
+        }
     ]);
+    // setNotes(localStorage.getItem('notes') || []);
+    // localStorage.setItem('notes', JSON.stringify(todos));
+
+    const deleteTodo = (id) => {
+        const newTodos = todos.filter((todo) => todo.id !== id);
+        setNotes(newTodos);
+        localStorage.setItem('notes', JSON.stringify(newTodos));
+    }
 
     return (
         <div className='todo-main'>
@@ -55,12 +34,11 @@ export default function Todo() {
                 <Typography variant='h4' align='center' color='primary'>NOTE'S</Typography>
                 <Divider />
                 <div className='todo-list'>
-                    {/* Ensure you return the JSX from the map function */}
-                    {notes.map((note, index) => (
-                        <div className="todo-item" key={index}>
-                            <Typography variant='subtitle1'>{note}</Typography>
+                    {todos.map((todo) => (
+                        <div className="todo-item" key={todo.id}>
+                            <Typography variant='subtitle1'>{todo.note}</Typography>
                             <Tooltip title='Delete note' placement='top'>
-                                <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} />
+                                <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} onClick={() => deleteTodo(todo.id)} />
                             </Tooltip>
                         </div>
                     ))}
