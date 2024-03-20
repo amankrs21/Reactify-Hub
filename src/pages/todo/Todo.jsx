@@ -41,7 +41,13 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function Todo() {
     // Initialize the notes state with default values.
-    const [notes, setNotes] = useState(['Note 1', 'Note 2', 'Note 3']);
+    const [notes, setNotes] = useState([
+        'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.',
+        'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.',
+        'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.',
+        'Note 2',
+        'Note 3'
+    ]);
 
     return (
         <div className='todo-main'>
@@ -52,7 +58,7 @@ export default function Todo() {
                     {/* Ensure you return the JSX from the map function */}
                     {notes.map((note, index) => (
                         <div className="todo-item" key={index}>
-                            <Typography variant='h6'>{note}</Typography>
+                            <Typography variant='subtitle1'>{note}</Typography>
                             <Tooltip title='Delete note' placement='top'>
                                 <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} />
                             </Tooltip>
