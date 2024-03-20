@@ -52,6 +52,7 @@ export default function Todo() {
                         </Tooltip>
                     </Grid>
                 </div>
+                <Divider />
                 {open && <AddTodo open={open} handleOpen={handleOpen} />}
             </Card>
         </div>
