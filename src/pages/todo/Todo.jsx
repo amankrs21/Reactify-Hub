@@ -1,5 +1,5 @@
 import './Todo.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Divider, Grid, Tooltip, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -7,22 +7,11 @@ import AddTodo from './AddTodo';
 
 export default function Todo() {
     const [open, setOpen] = useState(false);
-    const [todos, setNotes] = useState([
-        {
-            id: 1,
-            note: 'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.'
-        },
-        {
-            id: 2,
-            note: 'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.'
-        },
-        {
-            id: 3,
-            note: 'Note 1 Browse through the icons below to find the one you need. The search field supports synonyms—for example, try searching for "hamburger" or "logout.'
-        }
-    ]);
-    // setNotes(localStorage.getItem('notes') || []);
-    // localStorage.setItem('notes', JSON.stringify(todos));
+    const [todos, setNotes] = useState([]);
+
+    useEffect(() => {
+        setNotes(JSON.parse(localStorage.getItem('notes')) || []);
+    }, [open]);
 
     const deleteTodo = (id) => {
         const newTodos = todos.filter((todo) => todo.id !== id);
@@ -42,7 +31,14 @@ export default function Todo() {
                 <div className='todo-list'>
                     {todos.map((todo) => (
                         <div className="todo-item" key={todo.id}>
-                            <Typography variant='subtitle1'>{todo.note}</Typography>
+                            <pre style={{
+                                minWidth: '18rem',
+                                whiteSpace: 'pre-wrap',
+                                wordBreak: 'break-word',
+                                overflowWrap: 'break-word'
+                            }}>
+                                <Typography variant='subtitle1'>{todo.note}</Typography>
+                            </pre>
                             <Tooltip title='Delete note' placement='top'>
                                 <DeleteForeverIcon color='error' sx={{ cursor: 'pointer' }} onClick={() => deleteTodo(todo.id)} />
                             </Tooltip>
@@ -52,11 +48,11 @@ export default function Todo() {
                 <div className='todo-add'>
                     <Grid item xs={5} sm md>
                         <Tooltip title='Add a new note' placement='top'>
-                            <AddIcon className='todo-icon' />
+                            <AddIcon className='todo-icon' onClick={handleOpen} />
                         </Tooltip>
                     </Grid>
                 </div>
-                <AddTodo open={open} handleOpen={handleOpen} />
+                {open && <AddTodo open={open} handleOpen={handleOpen} />}
             </Card>
         </div>
     );
