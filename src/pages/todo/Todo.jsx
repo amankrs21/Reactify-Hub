@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Card, Divider, Grid, Tooltip, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddTodo from './AddTodo';
 
 export default function Todo() {
+    const [open, setOpen] = useState(false);
     const [todos, setNotes] = useState([
         {
             id: 1,
@@ -26,6 +28,10 @@ export default function Todo() {
         const newTodos = todos.filter((todo) => todo.id !== id);
         setNotes(newTodos);
         localStorage.setItem('notes', JSON.stringify(newTodos));
+    }
+
+    const handleOpen = () => {
+        setOpen(!open);
     }
 
     return (
@@ -50,6 +56,7 @@ export default function Todo() {
                         </Tooltip>
                     </Grid>
                 </div>
+                <AddTodo open={open} handleOpen={handleOpen} />
             </Card>
         </div>
     );
