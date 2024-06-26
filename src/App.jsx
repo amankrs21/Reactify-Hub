@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Home from './pages/home/Home';
@@ -10,6 +10,10 @@ import Calculator from './pages/calculator/Calculator';
 import Todo from './pages/todo/Todo';
 
 export default function App() {
+  useEffect(() => {
+    console.log('App component mounted');
+  }, []);
+  console.log('App component rendered');
   return (
     <BrowserRouter>
       <Navbar />
