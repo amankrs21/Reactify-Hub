@@ -55,7 +55,7 @@ npm run dev
 
 ## Hosting
 
-This project is hosted on Cloudflare. You can access it [here](https://reactexperiments.pages.dev).
+This project is hosted on Cloudflare. You can access it [here](https://reactify-hub.pages.dev).
 
 ## License
 
