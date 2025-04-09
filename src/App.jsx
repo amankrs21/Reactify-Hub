@@ -18,20 +18,22 @@ export default function App() {
 
       <Navbar />
 
-      <Routes>
+      <div className='content__container'>
+        <Routes>
 
-        <Route path="/" element={<Navigate to='/home' />} />
+          <Route path="/" element={<Navigate to='/home' />} />
 
-        <Route path='/bmi' element={<Bmi />} />
-        <Route path="/home" element={<Home />} />
-        <Route path='/note' element={<Todo />} />
-        <Route path='/weather' element={<Weather />} />
-        <Route path="/password" element={<PasswordVal />} />
-        <Route path='/calculator' element={<Calculator />} />
+          <Route path='/bmi' element={<Bmi />} />
+          <Route path="/home" element={<Home />} />
+          <Route path='/notes' element={<Todo />} />
+          <Route path='/weather' element={<Weather />} />
+          <Route path="/password" element={<PasswordVal />} />
+          <Route path='/calculator' element={<Calculator />} />
 
-        <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
-      </Routes>
+        </Routes>
+      </div>
 
     </BrowserRouter>
   );

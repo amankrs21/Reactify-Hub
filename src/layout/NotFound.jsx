@@ -1,7 +1,7 @@
 
 export default function NotFound() {
     return (
-        <div style={{ textAlign: 'center', marginTop: '15rem' }}>
+        <div style={{ textAlign: 'center' }}>
             <h1>404 Not Found</h1>
             <p style={{ fontSize: '20px', color: '#555', marginTop: '10px' }}>
                 Oops! It seems that the page you are looking for does not exist.
