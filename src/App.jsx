@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import './main.css';
@@ -13,6 +14,10 @@ import Calculator from './pages/calculator/Calculator';
 
 // App Component
 export default function App() {
+  useEffect(() => {
+    console.log('App component mounted');
+  }, []);
+  console.log('App component rendered');
   return (
     <BrowserRouter>
 
