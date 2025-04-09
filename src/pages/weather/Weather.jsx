@@ -1,14 +1,15 @@
-import './Weather.css';
-import React, { useState } from 'react';
-import { fetchWeather, fetchCountry } from './WeatherService';
-import { Container, TextField, Box, Button, Card, Typography, Divider } from '@mui/material';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
-import WindPowerIcon from '@mui/icons-material/WindPower';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ElectricMeterIcon from '@mui/icons-material/ElectricMeter';
-import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Search } from '@mui/icons-material';
+import {
+    Container, TextField, Card, Typography, IconButton, Box
+} from '@mui/material';
 
+import './Weather.css';
+import WeatherReport from './WeatherReport';
+
+
+// Weather App Component
 export default function WeatherApp() {
     const [city, setCity] = useState('');
     const [country, setCountry] = useState(null);
@@ -17,91 +18,112 @@ export default function WeatherApp() {
     const handleSearch = async () => {
         if (!city) return;
         const data = await fetchWeather(city);
-        if (data.list.length === 0) {
-            setWeather('No Data');
-        } else if (data.list[0].sys.country) {
-            setWeather(data.list[0]);
-            const countryData = await fetchCountry(data.list[0].sys.country);
+
+        if (data?.sys?.country) {
+            const countryData = await fetchCountry(data?.sys?.country);
+            if (!countryData?.name) {
+                setWeather(null);
+                setCountry({ "error": "NOT FOUND" }); return;
+            }
+            setWeather(data);
             setCountry(countryData);
         } else {
             setWeather('No Data');
         }
     };
 
-    function capitalizeWord(word) {
-        return word
-            .split(' ')
-            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(' ');
-    }
+    const fetchWeather = async (city) => {
+        try {
+            const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+            const baseUrl = import.meta.env.VITE_WEATHER_API_URL;
+            const url = `${baseUrl}?q=${city}&type=accurate&appid=${apiKey}`;
 
-    function fahrenheitToCelsius(kelvin) {
-        return (kelvin - 273.15).toFixed(2);
-    }
+            const response = await fetch(url);
+            if (!response.ok) return {};
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching weather:', error);
+            return {};
+        }
+    };
 
-    function convertSpeed(speed) {
-        // 1 m/s = 3.6 km/h
-        return (speed * 3.6).toFixed(2);
-    }
+    const fetchCountry = async (countryCode) => {
+        try {
+            const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
+            const data = await response.json();
+            return data[0] || {};
+        } catch (error) {
+            console.error('Error fetching country data:', error);
+            return {};
+        }
+    };
 
     return (
-        <div className='weather-main'>
-            <Container maxWidth="sm">
-                <Card sx={{ p: 2 }}>
-                    <Typography variant="h5" gutterBottom>
-                        Weather Finder
+        <Container maxWidth="xs">
+            <motion.div
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
+                <Card sx={{ p: 2, pb: 1, boxShadow: 6, borderRadius: 3, minHeight: '200px' }}>
+                    <Typography variant="h5" gutterBottom align="center" fontWeight={700}>
+                        🌤️ Weather App
                     </Typography>
                     <TextField
                         fullWidth
-                        label="Enter city name"
                         value={city}
-                        onChange={(e) => setCity(e.target.value)}
                         margin="normal"
+                        label="Enter city name"
+                        placeholder="Search weather by city"
+                        onChange={(e) => setCity(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                        InputLabelProps={{ shrink: true }}
+                        InputProps={{
+                            endAdornment: (
+                                <IconButton
+                                    color="primary"
+                                    className='search-button'
+                                    onClick={handleSearch} disabled={!city}>
+                                    <Search />
+                                </IconButton>
+                            ),
+                        }}
                     />
-                    <Button variant="contained" onClick={handleSearch} sx={{ mb: 2 }}>
-                        Get Weather
-                    </Button>
-                    {weather && country && (
-                        <Box>
-                            <div className='weather-result'>
-                                <Typography variant="h6" fontWeight={700}>{`${weather.name}, ${country.name.official} ${country.flag}`}</Typography>
-                                <div className='weather-icons'>
-                                    <img src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt={weather.weather[0].description} />
-                                    <div>
-                                        <Typography variant="h4" fontWeight={700}>{fahrenheitToCelsius(weather.main.temp)}°C</Typography>
-                                        <Typography variant="subtitle1">{capitalizeWord(weather.weather[0].description)}</Typography>
-                                    </div>
-                                </div>
-                                <div className="weather-temp">
-                                    <DeviceThermostatIcon color='primary' />
-                                    <Typography variant="subtitle1">Feels Like: {fahrenheitToCelsius(weather.main.feels_like)}°C</Typography>
-                                </div>
-                                <div className="weather-temp">
-                                    <ArrowDownwardIcon color='primary' />
-                                    <Typography variant="subtitle1">{fahrenheitToCelsius(weather.main.temp_min)}°C</Typography>
-                                    <ArrowUpwardIcon color='primary' />
-                                    <Typography variant="subtitle1">{fahrenheitToCelsius(weather.main.temp_max)}°C</Typography>
-                                </div>
-                                <div className="weather-temp">
-                                    <WaterDropIcon color='primary' />
-                                    <Typography variant="subtitle1">Humidity: {weather.main.humidity}%</Typography>
-                                </div>
-                                <div className="weather-temp">
-                                    <WindPowerIcon color='primary' />
-                                    <Typography variant="subtitle1">Wind Speed: {convertSpeed(weather.wind.speed)} km/h</Typography>
-                                </div>
-                                <div className="weather-temp">
-                                    <ElectricMeterIcon color='primary' />
-                                    <Typography variant="subtitle1">Pressure: {weather.main.pressure} hPa</Typography>
-                                </div>
-                            </div>
-                        </Box>
-                    )}
-                    {weather == 'No Data' && (
-                        <Typography variant="h6" fontWeight={700}>City Not Found!!</Typography>
-                    )}
+                    <Box mt={1}>
+                        {weather && country && (
+                            <motion.div
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.4 }}
+                            >
+                                <WeatherReport weather={weather} country={country} />
+                            </motion.div>
+                        )}
+                        {weather === 'No Data' && (
+                            <Typography
+                                mt={2}
+                                variant="h6"
+                                color="error"
+                                align="center"
+                                fontWeight={700}
+                            >
+                                ❌ City Not Found!
+                            </Typography>
+                        )}
+                        {country?.error === "NOT FOUND" && (
+                            <Typography
+                                mt={2}
+                                variant="h6"
+                                color="error"
+                                align="center"
+                                fontWeight={700}
+                            >
+                                ❌ Country Not Found!
+                            </Typography>
+                        )}
+                    </Box>
                 </Card>
-            </Container>
-        </div>
+            </motion.div>
+        </Container>
     );
 }

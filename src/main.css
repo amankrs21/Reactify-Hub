@@ -1,3 +1,42 @@
+/* GLOBAL CSS */
+
+* {
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-color: #5a9ada transparent;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right top, #74ebd5, #acb6e5);
+}
+
+.content__container {
+    height: 91vh;
+    margin-top: 9vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .content__container {
+        height: auto;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
 /* NAVBAR CSS */
 .active-route {
     display: flex !important;
@@ -25,4 +64,22 @@
 
 .pop-non-active {
     color: black !important;
+}
+
+
+/* HOME CSS */
+.home-card {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.home-card:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+    transform: scale(1.03);
+    transition: all 0.5s ease;
 }
