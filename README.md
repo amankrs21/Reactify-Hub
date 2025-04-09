@@ -1,6 +1,10 @@
-# React Experiments
+# Reactify Hub
 
-Welcome to React Experiments! This website showcases various experiments built using React, demonstrating its versatility in creating interactive user interfaces.
+Welcome to Reactify Hub, a collection of interactive experiments built with React! This project serves as a playground for various React applications, showcasing the power and flexibility of this popular JavaScript library.
+This repository contains a series of mini-projects, each demonstrating different functionalities and features that can be achieved using React. From password validation to weather forecasting, these experiments highlight the versatility of React in creating dynamic user interfaces.
+This project is a great resource for developers looking to learn more about React, experiment with its capabilities, or simply explore some fun and useful applications. Whether you're a beginner or an experienced developer, you'll find something interesting here.
+
+<!-- See Screenshots below scroll to screenshot section -->
 
 ## Features
 
@@ -30,7 +34,7 @@ To explore these experiments, simply navigate to each section using the provided
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/amankrs21/ReactExperiments
+git clone https://github.com/amankrs21/reactify-hub.git
 ```
 
 2. Install dependencies:
@@ -55,8 +59,34 @@ This project is hosted on Cloudflare. You can access it [here](https://reactexpe
 
 ## License
 
-This project is not licensed under any open-source license. All rights are reserved by the author.
+This project is licensed under the MIT License. Feel free to use, modify, and distribute it as you wish. For more details, please refer to the [LICENSE](LICENSE) file.
 
 ## Author
 
 - [Aman Singh](https://github.com/amankrs21)
+
+## Acknowledgements
+- Thanks to the React community for their continuous support and contributions.
+- Special thanks to the creators of Material-UI for providing a great UI framework that enhances the user experience of this project.
+
+
+## Screenshots
+
+Here are some screenshots showcasing the various experiments in Reactify Hub:
+
+1. **Password Validation Tool**  
+    ![Password Validation Tool](screenshots/password-validation.png)
+
+2. **Calculator**  
+    ![Calculator](screenshots/calculator.png)
+
+3. **BMI Calculator**  
+    ![BMI Calculator](screenshots/bmi-calculator.png)
+
+4. **Weather App**  
+    ![Weather App](screenshots/weather-app.png)
+
+5. **Todo Lists**  
+    ![Todo Lists](screenshots/todo-lists.png)
+
+These images provide a glimpse into the functionality and design of each experiment. Explore the project to see them in action!
