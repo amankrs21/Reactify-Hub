@@ -12,24 +12,34 @@ import WeatherReport from './WeatherReport';
 // Weather App Component
 export default function WeatherApp() {
     const [city, setCity] = useState('');
-    const [country, setCountry] = useState(null);
     const [weather, setWeather] = useState(null);
+    const [country, setCountry] = useState(null);
+    const [cityError, setCityError] = useState(false);
+    const [countryError, setCountryError] = useState(false);
 
     const handleSearch = async () => {
-        if (!city) return;
-        const data = await fetchWeather(city);
+        if (!city.trim()) return;
 
-        if (data?.sys?.country) {
-            const countryData = await fetchCountry(data?.sys?.country);
-            if (!countryData?.name) {
-                setWeather(null);
-                setCountry({ "error": "NOT FOUND" }); return;
-            }
-            setWeather(data);
-            setCountry(countryData);
-        } else {
-            setWeather('No Data');
+        // Reset previous state
+        setWeather(null);
+        setCountry(null);
+        setCityError(false);
+        setCountryError(false);
+
+        const data = await fetchWeather(city.trim());
+
+        if (data?.cod === '404' || !data?.sys?.country) {
+            setCityError(true);
+            return;
         }
+
+        const countryData = await fetchCountry(data.sys.country);
+        if (!countryData?.name) {
+            setCountryError(true);
+        }
+
+        setWeather(data);
+        setCountry(countryData);
     };
 
     const fetchWeather = async (city) => {
@@ -39,7 +49,10 @@ export default function WeatherApp() {
             const url = `${baseUrl}?q=${city}&type=accurate&appid=${apiKey}`;
 
             const response = await fetch(url);
-            if (!response.ok) return {};
+            if (!response.ok) {
+                return {};
+            }
+
             return await response.json();
         } catch (error) {
             console.error('Error fetching weather:', error);
@@ -69,6 +82,7 @@ export default function WeatherApp() {
                     <Typography variant="h5" gutterBottom align="center" fontWeight={700}>
                         🌤️ Weather App
                     </Typography>
+
                     <TextField
                         fullWidth
                         value={city}
@@ -77,40 +91,25 @@ export default function WeatherApp() {
                         placeholder="Search weather by city"
                         onChange={(e) => setCity(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                        error={cityError}
+                        helperText={cityError ? "❌ City not found!" : ''}
                         InputLabelProps={{ shrink: true }}
                         InputProps={{
                             endAdornment: (
                                 <IconButton
                                     color="primary"
                                     className='search-button'
-                                    onClick={handleSearch} disabled={!city}>
+                                    onClick={handleSearch}
+                                    disabled={!city.trim()}
+                                >
                                     <Search />
                                 </IconButton>
                             ),
                         }}
                     />
+
                     <Box mt={1}>
-                        {weather && country && (
-                            <motion.div
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ duration: 0.4 }}
-                            >
-                                <WeatherReport weather={weather} country={country} />
-                            </motion.div>
-                        )}
-                        {weather === 'No Data' && (
-                            <Typography
-                                mt={2}
-                                variant="h6"
-                                color="error"
-                                align="center"
-                                fontWeight={700}
-                            >
-                                ❌ City Not Found!
-                            </Typography>
-                        )}
-                        {country?.error === "NOT FOUND" && (
+                        {countryError && (
                             <Typography
                                 mt={2}
                                 variant="h6"
@@ -120,6 +119,16 @@ export default function WeatherApp() {
                             >
                                 ❌ Country Not Found!
                             </Typography>
+                        )}
+
+                        {weather && country && !cityError && !countryError && (
+                            <motion.div
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.4 }}
+                            >
+                                <WeatherReport weather={weather} country={country} />
+                            </motion.div>
                         )}
                     </Box>
                 </Card>
