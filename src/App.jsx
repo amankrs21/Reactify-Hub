@@ -10,6 +10,8 @@ import NotFound from './layout/NotFound';
 import Weather from './pages/weather/Weather';
 import PasswordVal from './pages/password/PasswordVal';
 import Calculator from './pages/calculator/Calculator';
+import ErrorBoundary from './components/ErrorBoundary';
+import ErrorPage from './components/ErrorPage';
 
 
 // App Component
@@ -19,27 +21,29 @@ export default function App() {
   }, []);
   console.log('App component rendered');
   return (
-    <BrowserRouter>
+    <ErrorBoundary fallback={<ErrorPage />}>
+      <BrowserRouter>
 
-      <Navbar />
+        <Navbar />
 
-      <div className='content__container'>
-        <Routes>
+        <div className='content__container'>
+          <Routes>
 
-          <Route path="/" element={<Navigate to='/home' />} />
+            <Route path="/" element={<Navigate to='/home' />} />
 
-          <Route path='/bmi' element={<Bmi />} />
-          <Route path="/home" element={<Home />} />
-          <Route path='/notes' element={<Todo />} />
-          <Route path='/weather' element={<Weather />} />
-          <Route path="/password" element={<PasswordVal />} />
-          <Route path='/calculator' element={<Calculator />} />
+            <Route path='/bmi' element={<Bmi />} />
+            <Route path="/home" element={<Home />} />
+            <Route path='/notes' element={<Todo />} />
+            <Route path='/weather' element={<Weather />} />
+            <Route path="/password" element={<PasswordVal />} />
+            <Route path='/calculator' element={<Calculator />} />
 
-          <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
 
-        </Routes>
-      </div>
+          </Routes>
+        </div>
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
