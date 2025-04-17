@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import './main.css';
@@ -8,18 +7,15 @@ import Todo from './pages/todo/Todo';
 import Navbar from './layout/Navbar';
 import NotFound from './layout/NotFound';
 import Weather from './pages/weather/Weather';
+import ErrorPage from './components/ErrorPage';
 import PasswordVal from './pages/password/PasswordVal';
 import Calculator from './pages/calculator/Calculator';
 import ErrorBoundary from './components/ErrorBoundary';
-import ErrorPage from './components/ErrorPage';
 
 
 // App Component
 export default function App() {
-  useEffect(() => {
-    console.log('App component mounted');
-  }, []);
-  console.log('App component rendered');
+
   return (
     <ErrorBoundary fallback={<ErrorPage />}>
       <BrowserRouter>
@@ -46,4 +42,5 @@ export default function App() {
       </BrowserRouter>
     </ErrorBoundary>
   );
+
 }
