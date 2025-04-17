@@ -83,3 +83,21 @@ body {
     transform: scale(1.03);
     transition: all 0.5s ease;
 }
+
+
+/* PASSWORD CSS */
+.password-card {
+    height: 400px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.password-card .password-buttons {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
