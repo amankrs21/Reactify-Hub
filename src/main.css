@@ -24,9 +24,7 @@ body {
     justify-content: center;
 }
 
-
-
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .content__container {
         height: auto;
         min-height: 600px;
@@ -35,7 +33,7 @@ body {
         flex-direction: column;
         justify-content: center;
     }
-}
+} */
 
 /* NAVBAR CSS */
 .active-route {
