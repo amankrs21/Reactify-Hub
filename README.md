@@ -55,7 +55,7 @@ npm run dev
 
 ## Hosting
 
-This project is hosted on Cloudflare. You can access it [here](https://reactify-hub.pages.dev).
+This project is hosted on Cloudflare. You can access it [here](https://reactify-hub.pages.dev/).
 
 ## License
 
@@ -74,19 +74,22 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 
 Here are some screenshots showcasing the various experiments in Reactify Hub:
 
-1. **Password Validation Tool**  
-    ![Password Validation Tool](screenshots/password-validation.png)
+1. **Welcome Page**  
+    ![Welcome Page](screenshots/welcome.png)
 
-2. **Calculator**  
+2. **Weather App**  
+    ![Weather App](screenshots/weather.png)
+
+3. **Password Validation Tool**  
+    ![Password Validation Tool](screenshots/password.png)
+
+4. **Calculator**  
     ![Calculator](screenshots/calculator.png)
 
-3. **BMI Calculator**  
-    ![BMI Calculator](screenshots/bmi-calculator.png)
+5. **BMI Calculator**  
+    ![BMI Calculator](screenshots/bmi.png)
 
-4. **Weather App**  
-    ![Weather App](screenshots/weather-app.png)
-
-5. **Todo Lists**  
-    ![Todo Lists](screenshots/todo-lists.png)
+6. **Notes**  
+    ![Notes](screenshots/notes.png)
 
 These images provide a glimpse into the functionality and design of each experiment. Explore the project to see them in action!

@@ -1,7 +1,8 @@
-import './Calculator.css';
 import { useState } from 'react';
-import { Button, Card, Grid, TextField, Typography } from '@mui/material';
+import { Button, Card, Container, Grid, TextField, Typography } from '@mui/material';
 
+
+// Calculator component
 export default function Calculator() {
     const [data, setData] = useState('');
 
@@ -29,8 +30,8 @@ export default function Calculator() {
 
 
     return (
-        <div className='cal-main'>
-            <Card className='cal-card'>
+        <Container maxWidth='xs' >
+            <Card variant='outlined' className='cal-card'>
                 <Typography variant='h4' align='center'>Calculator</Typography>
                 <div className='cal-body'>
                     <TextField
@@ -111,6 +112,6 @@ export default function Calculator() {
                     </div>
                 </div>
             </Card>
-        </div>
+        </Container>
     )
 }

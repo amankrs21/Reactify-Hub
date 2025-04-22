@@ -24,9 +24,7 @@ body {
     justify-content: center;
 }
 
-
-
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .content__container {
         height: auto;
         min-height: 600px;
@@ -35,7 +33,7 @@ body {
         flex-direction: column;
         justify-content: center;
     }
-}
+} */
 
 /* NAVBAR CSS */
 .active-route {
@@ -82,4 +80,60 @@ body {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
     transform: scale(1.03);
     transition: all 0.5s ease;
+}
+
+
+/* PASSWORD CSS */
+.password-card {
+    height: 400px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.password-card .password-buttons {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* CALCULATOR CSS */
+.cal-card {
+    height: 420px;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.cal-btns {
+    padding: 10px;
+}
+
+.cal-btns button {
+    border-color: grey;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
+
+
+/* BMI CSS */
+.bmi-card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.bmi-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
