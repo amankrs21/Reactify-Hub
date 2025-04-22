@@ -99,3 +99,26 @@ body {
     display: flex;
     justify-content: center;
 }
+
+
+/* CALCULATOR CSS */
+.cal-card {
+    width: 380px;
+    height: 420px;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.cal-btns {
+    padding: 10px;
+}
+
+.cal-btns button {
+    border-color: grey;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
